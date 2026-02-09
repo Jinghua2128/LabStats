@@ -1,16 +1,128 @@
+   <!--Created by Gracie Arianne Peh-->
+   <!--9/2/26-->
+   <!--Accompanying website for unity game LabRats; DDA-->
+   <!--Reference to school notes and chatGPT for getting input tag instead of select tag (i referenced DDA CA5 and got confused when it didnt work lol)-->
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LabStats for LabRats</title>
 </head>
-<header>
-    <h1>Welcome to LabStats for LabRats</h1>
-    <img src="imgs/logo.png" alt="LabStats Logo">
-</header>
+
 <body>
-    
+    <h1>LabStats</h1> 
+
+    <!--Get user's input while ensuring valid email format-->
+    <input 
+        type="email"              
+        id="emailInput"            
+        placeholder="Enter email"  
+    /> <!-- Hint text inside input -->
+
+    <button id="searchBtn">Search</button>
+
+    <!-- Div where results (email + labs data) will be displayed -->
+    <div id="result"></div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        // initializeApp → starts Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+
+        // web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2ySShSFOcXsdZiMN8MoB2Cq5OKxB59xU",
+            authDomain: "labrats-ee791.firebaseapp.com",
+            databaseURL: "https://labrats-ee791-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "labrats-ee791",
+            storageBucket: "labrats-ee791.firebasestorage.app",
+            messagingSenderId: "296967416158",
+            appId: "1:296967416158:web:e15bc6dc27f287321d07cf"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Database reference 
+        const db = getDatabase(app);
+        // Reference the "Users" node in the database
+        const players = ref(db, "Users");
+
+        // Function to search for a user using their email by retrieving all data under Users
+        function getPlayerDataByEmail(inputEmail) { 
+            get(players).then((snapshot) => { //async task
+
+                // Get the result div to display output
+                const resultDiv = document.getElementById("result"); 
+                // Clear previous search results
+                resultDiv.innerHTML = "";
+
+                // error catch if there is no data in the Users node
+                if (!snapshot.exists()) { 
+                    resultDiv.innerHTML = "No users found.";
+                    return;
+                }
+
+                // flag to track whether a matching user is found
+                let userFound = false;
+
+                // Loop through each user ID
+                snapshot.forEach((child) => {
+                    const userData = child.val(); //get data under userID
+                    const profile = userData.Profile; //get profile node under userID
+
+                    // Check if the email matches the input email
+                    if (profile?.Email === inputEmail) {
+                        userFound = true;
+
+                        const labs = userData.Labs || {}; // Get the Labs object (or empty object if none exists); list of labs
+                        const labNames = Object.keys(labs);  // Get lab names (Lab1, Lab2, etc.)
+                        const labCount = labNames.length;  // Count existing labs; if lab is not completed it wont be written into database therefore data in database=completed
+
+                        // html output
+                        let output = `
+                            <h2>${profile.Email}</h2>
+                            <p><strong>Number of labs completed:</strong> ${labCount}</p>
+                            <p><strong>List of labs completed:</strong></p>
+                            <ul>
+                        `;
+
+                        // Loop through each lab and display its time
+                        labNames.forEach((labName) => {
+                            // Get time taken for the lab, or "N/A" if missing (eg not completed)
+                            const timeTaken = labs[labName].Time ?? "N/A";
+                            output += `<li>${labName} (${timeTaken} minutes taken)</li>`;
+                        });
+
+                        // Close list
+                        output += "</ul>";
+
+                        // Display the final output on the page
+                        resultDiv.innerHTML = output;
+                    }
+                });
+
+                // error catch if no matching email was found after looping
+                if (!userFound) {
+                    resultDiv.innerHTML = "Email not found.";
+                }
+
+            }).catch((error) => {
+                // Log any Firebase or network errors
+                console.log(error);
+            });
+        }
+
+        // When the Search button is clicked
+        document.getElementById("searchBtn").addEventListener("click", () => {
+            // Read the email from the input field
+            const email = document.getElementById("emailInput").value;
+            // Call the function to fetch and display user data
+            getPlayerDataByEmail(email);
+        });
+    </script>
 </body>
-<script src="scripts.js"></script>
 </html>
