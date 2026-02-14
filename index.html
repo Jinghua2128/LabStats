@@ -1,128 +1,111 @@
-   <!--Created by Gracie Arianne Peh-->
-   <!--9/2/26-->
-   <!--Accompanying website for unity game LabRats; DDA-->
-   <!--Reference to school notes and chatGPT for getting input tag instead of select tag (i referenced DDA CA5 and got confused when it didnt work lol)-->
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>LabStats for LabRats</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabStats - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>LabStats</h1> 
+<body class="bg-gray-100 flex items-center justify-center min-h-screen font-sans"
+    style="background-image: url('imgs/final_final_labrats_bg.png'); background-size: cover; background-position: center;">
 
-    <!--Get user's input while ensuring valid email format-->
-    <input 
-        type="email"              
-        id="emailInput"            
-        placeholder="Enter email"  
-    /> <!-- Hint text inside input -->
+    <div class="bg-white/95 backdrop-blur-sm p-8 rounded-2xl shadow-xl w-full max-w-md border border-white/20">
+        <div class="text-center mb-8">
+            <img src="imgs/LabRats_Logo.png" alt="LabStats Logo" class="h-16 mx-auto mb-4">
+            <h1 class="text-2xl font-bold text-gray-800">LabStats</h1>
+            <p class="text-gray-500 text-sm">Sign in to access your dashboard</p>
+        </div>
 
-    <button id="searchBtn">Search</button>
+        <!-- Login Form -->
+        <form id="login-form" class="space-y-4">
+            <div>
+                <label for="login-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" id="login-email" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="login-password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="login-password" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <button type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Log In
+            </button>
+        </form>
 
-    <!-- Div where results (email + labs data) will be displayed -->
-    <div id="result"></div>
+        <!-- Signup Form (Hidden by default) -->
+        <form id="signup-form" class="space-y-4 hidden">
+            <div>
+                <label for="signup-email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                <input type="email" id="signup-email" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="signup-password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="signup-password" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <div>
+                <label for="signup-confirm-password" class="block text-sm font-medium text-gray-700">Confirm
+                    Password</label>
+                <input type="password" id="signup-confirm-password" required
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+            <button type="submit"
+                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                Sign Up
+            </button>
+        </form>
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        // initializeApp → starts Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js";
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">
+                <span id="toggle-text">Don't have an account?</span>
+                <button id="auth-toggle"
+                    class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none ml-1">
+                    Sign up
+                </button>
+            </p>
+        </div>
 
-        // web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyA2ySShSFOcXsdZiMN8MoB2Cq5OKxB59xU",
-            authDomain: "labrats-ee791.firebaseapp.com",
-            databaseURL: "https://labrats-ee791-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "labrats-ee791",
-            storageBucket: "labrats-ee791.firebasestorage.app",
-            messagingSenderId: "296967416158",
-            appId: "1:296967416158:web:e15bc6dc27f287321d07cf"
-        };
+        <div id="auth-message" class="mt-4 text-center text-sm text-red-600 hidden"></div>
+    </div>
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
+    <script type="module" src="auth.js"></script>
+    <script>
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const authToggle = document.getElementById('auth-toggle');
+        const toggleText = document.getElementById('toggle-text');
+        const authMessage = document.getElementById('auth-message');
 
-        // Database reference 
-        const db = getDatabase(app);
-        // Reference the "Users" node in the database
-        const players = ref(db, "Users");
-
-        // Function to search for a user using their email by retrieving all data under Users
-        function getPlayerDataByEmail(inputEmail) { 
-            get(players).then((snapshot) => { //async task
-
-                // Get the result div to display output
-                const resultDiv = document.getElementById("result"); 
-                // Clear previous search results
-                resultDiv.innerHTML = "";
-
-                // error catch if there is no data in the Users node
-                if (!snapshot.exists()) { 
-                    resultDiv.innerHTML = "No users found.";
-                    return;
-                }
-
-                // flag to track whether a matching user is found
-                let userFound = false;
-
-                // Loop through each user ID
-                snapshot.forEach((child) => {
-                    const userData = child.val(); //get data under userID
-                    const profile = userData.Profile; //get profile node under userID
-
-                    // Check if the email matches the input email
-                    if (profile?.Email === inputEmail) {
-                        userFound = true;
-
-                        const labs = userData.Labs || {}; // Get the Labs object (or empty object if none exists); list of labs
-                        const labNames = Object.keys(labs);  // Get lab names (Lab1, Lab2, etc.)
-                        const labCount = labNames.length;  // Count existing labs; if lab is not completed it wont be written into database therefore data in database=completed
-
-                        // html output
-                        let output = `
-                            <h2>${profile.Email}</h2>
-                            <p><strong>Number of labs completed:</strong> ${labCount}</p>
-                            <p><strong>List of labs completed:</strong></p>
-                            <ul>
-                        `;
-
-                        // Loop through each lab and display its time
-                        labNames.forEach((labName) => {
-                            // Get time taken for the lab, or "N/A" if missing (eg not completed)
-                            const timeTaken = labs[labName].Time ?? "N/A";
-                            output += `<li>${labName} (${timeTaken} minutes taken)</li>`;
-                        });
-
-                        // Close list
-                        output += "</ul>";
-
-                        // Display the final output on the page
-                        resultDiv.innerHTML = output;
-                    }
-                });
-
-                // error catch if no matching email was found after looping
-                if (!userFound) {
-                    resultDiv.innerHTML = "Email not found.";
-                }
-
-            }).catch((error) => {
-                // Log any Firebase or network errors
-                console.log(error);
-            });
-        }
-
-        // When the Search button is clicked
-        document.getElementById("searchBtn").addEventListener("click", () => {
-            // Read the email from the input field
-            const email = document.getElementById("emailInput").value;
-            // Call the function to fetch and display user data
-            getPlayerDataByEmail(email);
+        authToggle.addEventListener('click', () => {
+            if (loginForm.classList.contains('hidden')) {
+                // Show Login
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                authToggle.textContent = 'Sign up';
+                toggleText.textContent = "Don't have an account?";
+                authMessage.classList.add('hidden');
+            } else {
+                // Show Signup
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                authToggle.textContent = 'Log in';
+                toggleText.textContent = "Already have an account?";
+                authMessage.classList.add('hidden');
+            }
         });
     </script>
+    <script type="module" src="mascot.js"></script>
 </body>
+
 </html>

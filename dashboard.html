@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabStats - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans"
+    style="background-image: url('imgs/final_final_labrats_bg.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+    <!-- Navbar -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto mr-2" src="imgs/LabRats_Logo.png" alt="LabStats">
+                    <span class="font-bold text-xl text-gray-800">LabStats</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="about.html"
+                        class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                    <div class="flex items-center">
+                        <div
+                            class="bg-indigo-100 rounded-full h-8 w-8 flex items-center justify-center text-indigo-600 font-bold mr-2">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span id="user-email" class="text-sm text-gray-700 hidden md:block">Loading...</span>
+                    </div>
+                    <button id="logout-btn" class="text-gray-500 hover:text-red-600 p-2 rounded-md transition-colors">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 px-4 sm:px-0">
+
+            <!-- Total Labs Card -->
+            <div
+                class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                            <i class="fas fa-flask text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Total Labs</dt>
+                                <dd>
+                                    <div class="text-2xl font-bold text-gray-900" id="total-labs">0</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Average Time Card -->
+            <div
+                class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                            <i class="fas fa-stopwatch text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Avg Time</dt>
+                                <dd>
+                                    <div class="text-2xl font-bold text-gray-900" id="avg-time">0s</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fastest Completion Card -->
+            <div
+                class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Fastest Time</dt>
+                                <dd>
+                                    <div class="text-2xl font-bold text-gray-900" id="fastest-time">N/A</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Latest Lab Attempt Card -->
+            <div
+                class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
+                <div class="p-5">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                            <i class="fas fa-history text-white text-xl"></i>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Latest Lab</dt>
+                                <dd>
+                                    <div class="text-xl font-bold text-gray-900 truncate" id="latest-lab">N/A</div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div
+            class="bg-white/90 backdrop-blur-sm shadow-lg overflow-hidden sm:rounded-xl mx-4 sm:mx-0 border border-white/50">
+            <div class="px-4 py-5 sm:px-6 border-b border-gray-200/50">
+                <h3 class="text-lg leading-6 font-bold text-gray-900">Lab Experiments</h3>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Click on a lab name to view detailed statistics.</p>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200/50">
+                    <thead class="bg-gray-50/50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Lab Name
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Completion Time
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Attempts
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Date Completed
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white/50 divide-y divide-gray-200/50" id="labs-table-body">
+                        <!-- Rows populated by JS -->
+                        <tr>
+                            <td colspan="5" class="px-6 py-4 text-center text-sm text-gray-500">Loading data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Experiment Details Modal -->
+    <div id="details-modal" class="fixed z-50 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title"
+        role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"
+                id="modal-backdrop"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <div
+                class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                            <h3 class="text-lg leading-6 font-bold text-gray-900" id="modal-title">
+                                Experiment Details
+                            </h3>
+                            <div class="mt-4">
+                                <p id="modal-lab-name" class="text-sm text-gray-500 mb-4"></p>
+
+                                <div class="flex flex-col">
+                                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                            <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                <table class="min-w-full divide-y divide-gray-200">
+                                                    <thead class="bg-gray-50">
+                                                        <tr>
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                Attempt #</th>
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                Distance</th>
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                Gravity</th>
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                Duration</th>
+                                                            <th scope="col"
+                                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                                Recorded At</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="modal-table-body"
+                                                        class="bg-white divide-y divide-gray-200">
+                                                        <!-- Rows populated by JS -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p id="no-details-msg" class="text-sm text-gray-500 mt-4 hidden">No detailed experiment
+                                    data available for this lab.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="close-modal-btn"
+                        class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="dashboard.js"></script>
+    <script type="module" src="mascot.js"></script>
+</body>
+
+</html>

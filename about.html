@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabStats - About</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col font-sans"
+    style="background-image: url('imgs/final_final_labrats_bg.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+
+    <!-- Navbar -->
+    <nav class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <img class="h-8 w-auto mr-2" src="imgs/LabRats_Logo.png" alt="LabStats">
+                    <a href="index.html"
+                        class="font-bold text-xl text-gray-800 hover:text-indigo-600 transition">LabStats</a>
+                </div>
+                <div class="flex items-center">
+                    <a href="dashboard.html"
+                        class="text-indigo-600 hover:text-indigo-900 px-3 py-2 rounded-md text-sm font-medium">Back to
+                        Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-12">
+
+        <!-- LabRats Section -->
+        <div class="bg-indigo-900 rounded-2xl shadow-xl overflow-hidden text-white relative">
+            <!-- Decorative background element -->
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-indigo-800 rounded-full opacity-50 blur-3xl">
+            </div>
+
+            <div class="md:flex items-center relative z-10 p-8 md:p-12">
+                <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
+                    <img class="h-40 w-auto object-contain drop-shadow-lg transform hover:scale-105 transition-transform duration-300"
+                        src="imgs/LabRats_Logo.png" alt="LabRats Logo">
+                </div>
+                <div class="md:w-2/3 md:pl-10">
+                    <h2 class="text-3xl font-extrabold tracking-tight mb-4">LabRats</h2>
+                    <div class="space-y-4 text-indigo-100 text-lg leading-relaxed">
+                        <p>
+                            A cutting-edge <strong>VR educational experience</strong> designed to bridge the gap between
+                            theoretical science and practical application.
+                        </p>
+                        <p>
+                            Immerse yourself in a fully interactive virtual laboratory. Conduct experiments, observe
+                            physical phenomena, and analyze data in a safe, controlled environment.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Doc Link Bar -->
+            <div class="bg-indigo-950 px-8 py-4 flex items-center justify-between">
+                <span class="text-indigo-300 text-sm font-medium uppercase tracking-wide">Project Documentation</span>
+                <a href="https://docs.google.com/document/d/1nJ2sned7evwPe9IRa_Yl3lbcutMRpV48xbTFfmxCKWI/edit?pli=1&tab=t.pi7mzmnzpq6s"
+                    target="_blank"
+                    class="inline-flex items-center text-white font-bold hover:text-indigo-200 transition-colors">
+                    Read Design Doc <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- G²KM Studio Section (White Background) -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+            <div class="md:flex items-center p-8 md:p-12">
+                <div class="md:w-2/3 order-2 md:order-1 md:pr-10">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">G²KM
+                            Studio</span>
+                    </h3>
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            The innovative development team behind LabRats. We are dedicated to creating educational
+                            tools that leverage the immersive power of Virtual Reality.
+                        </p>
+                        <p>
+                            Our mission is to transform science education by making it accessible, engaging, and deeply
+                            intuitive for students worldwide.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <dt class="text-xs font-medium text-gray-500 uppercase">Game Version</dt>
+                            <dd class="mt-1 text-lg font-semibold text-gray-900">Alpha 1.0</dd>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <dt class="text-xs font-medium text-gray-500 uppercase">Dashboard</dt>
+                            <dd class="mt-1 text-lg font-semibold text-gray-900">v1.2.0</dd>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 order-1 md:order-2 flex justify-center mb-8 md:mb-0">
+                    <img class="h-32 w-auto opacity-90 hover:opacity-100 transition-opacity" src="imgs/studio_logo.png"
+                        alt="G²KM Studio Logo">
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-sm text-gray-500">
+                &copy; 2026 G²KM Studio. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script type="module" src="mascot.js"></script>
+</body>
+
+</html>
