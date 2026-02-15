@@ -1,6 +1,6 @@
-# Welcome to LabStats 📊
+# Welcome to [LabStats: https://github.com/Jinghua2128/LabStats/](https://github.com/Jinghua2128/LabStats/) 📊
 
-[**LabStats**](https://labrats-ee791.firebaseapp.com/) is the official companion dashboard for [**LabRats**](https://github.com/Jinghua2128/LabRats), the immersive VR science education experience developed by **G²KM Studio**.
+[**LabStats: https://labrats-ee791.firebaseapp.com/**](https://labrats-ee791.firebaseapp.com/) is the official companion dashboard for [**LabRats :https://github.com/Jinghua2128/LabRats**](https://github.com/Jinghua2128/LabRats), the immersive VR science education experience developed by **G²KM Studio**.
 
 This platform is designed to help players, students, and researchers visualize their experiment data, track progress, and gain deeper insights into their performance within the virtual laboratory.
 
