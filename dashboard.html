@@ -29,10 +29,10 @@
                 </div>
                 <div class="flex items-center space-x-4">
                     <a href="about.html"
-                        class="text-gray-600 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        class="text-[#172A39] hover:text-[#D5F3F3] px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
                     <div class="flex items-center">
                         <div
-                            class="bg-indigo-100 rounded-full h-8 w-8 flex items-center justify-center text-indigo-600 font-bold mr-2">
+                            class="bg-[#E8EDF0] rounded-full h-8 w-8 flex items-center justify-center text-[#172A39] font-bold mr-2">
                             <i class="fas fa-user"></i>
                         </div>
                         <span id="user-email" class="text-sm text-gray-700 hidden md:block">Loading...</span>
@@ -56,7 +56,7 @@
                 class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
                 <div class="p-5">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                        <div class="flex-shrink-0 bg-[#172A39] rounded-lg p-3 shadow-md">
                             <i class="fas fa-flask text-white text-xl"></i>
                         </div>
                         <div class="ml-5 w-0 flex-1">
@@ -76,7 +76,7 @@
                 class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
                 <div class="p-5">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                        <div class="flex-shrink-0 bg-[#172A39] rounded-lg p-3 shadow-md">
                             <i class="fas fa-stopwatch text-white text-xl"></i>
                         </div>
                         <div class="ml-5 w-0 flex-1">
@@ -96,7 +96,7 @@
                 class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
                 <div class="p-5">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                        <div class="flex-shrink-0 bg-[#172A39] rounded-lg p-3 shadow-md">
                             <i class="fas fa-bolt text-white text-xl"></i>
                         </div>
                         <div class="ml-5 w-0 flex-1">
@@ -116,7 +116,7 @@
                 class="bg-white/90 backdrop-blur-sm overflow-hidden shadow-lg rounded-xl hover:shadow-xl transition-shadow border border-white/50">
                 <div class="p-5">
                     <div class="flex items-center">
-                        <div class="flex-shrink-0 bg-indigo-600 rounded-lg p-3 shadow-md">
+                        <div class="flex-shrink-0 bg-[#172A39] rounded-lg p-3 shadow-md">
                             <i class="fas fa-history text-white text-xl"></i>
                         </div>
                         <div class="ml-5 w-0 flex-1">
@@ -239,9 +239,64 @@
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                     <button type="button" id="close-modal-btn"
-                        class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        class="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-[#172A39] text-base font-medium text-white hover:bg-[#D5F3F3] hover:text-[#172A39] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#172A39] sm:ml-3 sm:w-auto sm:text-sm">
                         Close
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gravity Lab Intro Overlay -->
+    <div id="gravity-lab-intro" class="fixed z-[60] inset-0 bg-black/90 hidden overflow-y-auto cursor-pointer">
+        <div class="min-h-screen flex items-center justify-center p-4">
+            <div class="max-w-3xl text-white space-y-6 text-center animate-fade-in">
+                <h2 class="text-4xl font-bold text-[#D5F3F3] mb-8">Gravity Lab</h2>
+
+                <div class="space-y-6 text-lg leading-relaxed text-gray-200">
+                    <p>
+                        When an object falls, it is affected by <span
+                            class="text-[#D5F3F3] font-semibold">gravity</span>, <span
+                            class="text-[#D5F3F3] font-semibold">mass</span>, and height.
+                        In this experiment (which excludes air resistance), changing these values lets you see how each
+                        one affects how fast something falls and how hard it lands.
+                    </p>
+
+                    <p>
+                        <span class="text-[#D5F3F3] font-semibold">Gravity</span> is the force that pulls objects toward
+                        a planet. Stronger gravity makes objects speed up faster as they fall.
+                        Weaker gravity makes them fall more slowly. For example, you would fall slower on the Moon than
+                        on Earth because the Moon has weaker gravity.
+                    </p>
+
+                    <p>
+                        <span class="text-[#D5F3F3] font-semibold">Mass</span> is how heavy something is. Since there is
+                        no air in this simulation, heavy and light objects fall at exactly the same speed when dropped
+                        from the same height.
+                        This surprises many people! The reason feathers fall slower than rocks on Earth is because of
+                        air resistance, not because they are lighter.
+                    </p>
+
+                    <p>
+                        On Earth, we have air. Air pushes upward against falling objects. This is called <span
+                            class="text-[#D5F3F3] font-semibold">air resistance</span>.
+                        Air resistance slows lighter objects down more easily. That is why a feather falls slower than a
+                        rock. If you remove the air, they would fall together.
+                    </p>
+
+                    <div class="bg-[#172A39]/80 p-6 rounded-xl border border-[#D5F3F3]/20 mt-8">
+                        <h3 class="text-xl font-bold text-[#D5F3F3] mb-2">The Main Idea</h3>
+                        <p>
+                            Mass alone does not decide falling speed. Gravity pulls all objects equally in the same
+                            environment—air resistance is what makes lighter objects seem slower.
+                            That is what makes dropping different masses at the same time such an important and
+                            surprising experiment.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-sm text-gray-400 animate-pulse">
+                    (Click anywhere to view data)
                 </div>
             </div>
         </div>

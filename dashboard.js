@@ -148,7 +148,7 @@ function renderTable(rows) {
         // Make the NAME clickable
         tr.innerHTML = `
             <td class="px-6 py-4 whitespace-nowrap cursor-pointer group" onclick="window.openModal('${row.rawKey}')">
-                <div class="text-sm font-medium text-indigo-600 group-hover:text-indigo-800 underline decoration-dotted underline-offset-2">${row.name}</div>
+                <div class="text-sm font-medium text-[#172A39] group-hover:text-[#0D1821] underline decoration-dotted underline-offset-2">${row.name}</div>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">
                 <div class="text-sm text-gray-500">${row.time}s</div>
@@ -176,6 +176,35 @@ window.openModal = function (labName) {
     const labData = currentLabsData[labName];
     if (!labData) return;
 
+    // Check if it's Gravity Lab (normalize string just in case)
+    const normalizedLabName = labName.trim().toLowerCase();
+
+    if (normalizedLabName.includes("gravity")) {
+        const introOverlay = document.getElementById('gravity-lab-intro');
+
+        // If we haven't shown it in this session yet (or just always show it as per request)
+        // Request says "when they press the gravity lab show a page... then when they press any screen, they go into see the datas"
+        // So we show it every time.
+        if (introOverlay) {
+            introOverlay.classList.remove('hidden');
+
+            // One-time click listener to dismiss
+            const dismissHandler = () => {
+                introOverlay.classList.add('hidden');
+                introOverlay.removeEventListener('click', dismissHandler);
+                showExperimentDetails(labName, labData);
+            };
+
+            introOverlay.addEventListener('click', dismissHandler);
+            return; // Stop here, wait for click
+        }
+    }
+
+    // Default behavior for other labs
+    showExperimentDetails(labName, labData);
+}
+
+function showExperimentDetails(labName, labData) {
     modalTitle.textContent = `Details: ${labName}`;
     modalLabName.textContent = `Detailed experiment logs for ${labName}`;
     modalTableBody.innerHTML = "";

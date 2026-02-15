@@ -7,6 +7,8 @@
     <title>LabStats - About</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -24,11 +26,11 @@
                 <div class="flex items-center">
                     <img class="h-8 w-auto mr-2" src="imgs/LabRats_Logo.png" alt="LabStats">
                     <a href="index.html"
-                        class="font-bold text-xl text-gray-800 hover:text-indigo-600 transition">LabStats</a>
+                        class="font-bold text-xl text-gray-800 hover:text-[#172A39] transition">LabStats</a>
                 </div>
                 <div class="flex items-center">
                     <a href="dashboard.html"
-                        class="text-indigo-600 hover:text-indigo-900 px-3 py-2 rounded-md text-sm font-medium">Back to
+                        class="text-[#172A39] hover:text-[#D5F3F3] px-3 py-2 rounded-md text-sm font-medium">Back to
                         Dashboard</a>
                 </div>
             </div>
@@ -38,9 +40,9 @@
     <main class="flex-grow max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8 space-y-12">
 
         <!-- LabRats Section -->
-        <div class="bg-indigo-900 rounded-2xl shadow-xl overflow-hidden text-white relative">
+        <div class="bg-[#0D1821] rounded-2xl shadow-xl overflow-hidden text-white relative">
             <!-- Decorative background element -->
-            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-indigo-800 rounded-full opacity-50 blur-3xl">
+            <div class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-[#12222E] rounded-full opacity-50 blur-3xl">
             </div>
 
             <div class="md:flex items-center relative z-10 p-8 md:p-12">
@@ -50,7 +52,7 @@
                 </div>
                 <div class="md:w-2/3 md:pl-10">
                     <h2 class="text-3xl font-extrabold tracking-tight mb-4">LabRats</h2>
-                    <div class="space-y-4 text-indigo-100 text-lg leading-relaxed">
+                    <div class="space-y-4 text-[#E8EDF0] text-lg leading-relaxed">
                         <p>
                             A cutting-edge <strong>VR educational experience</strong> designed to bridge the gap between
                             theoretical science and practical application.
@@ -63,11 +65,11 @@
                 </div>
             </div>
             <!-- Doc Link Bar -->
-            <div class="bg-indigo-950 px-8 py-4 flex items-center justify-between">
-                <span class="text-indigo-300 text-sm font-medium uppercase tracking-wide">Project Documentation</span>
+            <div class="bg-[#080F15] px-8 py-4 flex items-center justify-between">
+                <span class="text-[#B0C0CF] text-sm font-medium uppercase tracking-wide">Project Documentation</span>
                 <a href="https://docs.google.com/document/d/1nJ2sned7evwPe9IRa_Yl3lbcutMRpV48xbTFfmxCKWI/edit?pli=1&tab=t.pi7mzmnzpq6s"
                     target="_blank"
-                    class="inline-flex items-center text-white font-bold hover:text-indigo-200 transition-colors">
+                    class="inline-flex items-center text-white font-bold hover:text-[#D1DBE3] transition-colors">
                     Read Design Doc <i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
@@ -107,6 +109,51 @@
                     <img class="h-32 w-auto opacity-90 hover:opacity-100 transition-opacity" src="imgs/studio_logo.png"
                         alt="G²KM Studio Logo">
                 </div>
+            </div>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div class="bg-[#172A39] rounded-2xl shadow-lg overflow-hidden text-white border border-[#2A4050]">
+            <div class="p-8 md:p-12 text-center">
+                <h3 class="text-2xl font-bold mb-8">Connect With Us</h3>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-16">
+                    <!-- Instagram (Fake) -->
+                    <a href="#" class="group flex flex-col items-center transition-transform hover:scale-105"
+                        onclick="alert('This is a demo link!')">
+                        <div
+                            class="bg-white/10 p-5 rounded-full group-hover:bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] transition-all duration-300 shadow-lg">
+                            <i class="fab fa-instagram text-2xl text-white"></i>
+                        </div>
+                        <span
+                            class="mt-3 text-sm font-medium text-gray-300 group-hover:text-white transition-colors">@LabRatsVR</span>
+                    </a>
+
+                    <!-- Email (Fake) -->
+                    <a href="mailto:contact@g2km.studio"
+                        class="group flex flex-col items-center transition-transform hover:scale-105">
+                        <div
+                            class="bg-white/10 p-5 rounded-full group-hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                            <i class="fas fa-envelope text-2xl text-white"></i>
+                        </div>
+                        <span
+                            class="mt-3 text-sm font-medium text-gray-300 group-hover:text-white transition-colors">contact@g2km.studio</span>
+                    </a>
+
+                    <!-- GitHub (Real) -->
+                    <a href="https://github.com/Jinghua2128/LabRats" target="_blank"
+                        class="group flex flex-col items-center transition-transform hover:scale-105">
+                        <div
+                            class="bg-white/10 p-5 rounded-full group-hover:bg-black transition-all duration-300 shadow-lg">
+                            <i class="fab fa-github text-2xl text-white"></i>
+                        </div>
+                        <span
+                            class="mt-3 text-sm font-medium text-gray-300 group-hover:text-white transition-colors">Source
+                            Code</span>
+                    </a>
+                </div>
+                <p class="mt-8 text-xs text-gray-400">
+                    Follow us for updates on the latest experiments and features!
+                </p>
             </div>
         </div>
 
