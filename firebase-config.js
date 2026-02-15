@@ -1,9 +1,17 @@
-// firebase-config.js
+/**
+ * @file firebase-config.js
+ * @description Configuration file for Firebase initialization. 
+ *              Exports the initialized Firebase app, authentication, and database instances.
+ * @author Liu GuangXuan from G²KM
+ * @copyright Copyright (c) 2026 G²KM
+ * @license All Rights Reserved
+ * @version 1.0.0
+ */
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
   apiKey: "AIzaSyA2ySShSFOcXsdZiMN8MoB2Cq5OKxB59xU",
   authDomain: "labrats-ee791.firebaseapp.com",

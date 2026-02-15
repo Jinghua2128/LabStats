@@ -1,4 +1,12 @@
-// auth.js
+/**
+ * @file auth.js
+ * @description Handles user authentication logic including login, signup, and logout using Firebase Auth.
+ * @author Liu GuangXuan from G²KM
+ * @copyright Copyright (c) 2026 G²KM
+ * @license All Rights Reserved
+ * @version 1.0.0
+ */
+
 import { auth, db } from "./firebase-config.js";
 import {
     createUserWithEmailAndPassword,
@@ -15,7 +23,12 @@ const logoutBtn = document.getElementById('logout-btn');
 
 // --- Authentication Flow ---
 
-// Monitor Auth State
+/**
+ * Monitors the authentication state of the user.
+ * Redirects to the appropriate page based on login status.
+ * @param {object} auth - Firebase Auth instance.
+ * @param {function} callback - Callback function triggered on state change.
+ */
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
@@ -36,6 +49,11 @@ onAuthStateChanged(auth, (user) => {
 
 // Login
 if (loginForm) {
+    /**
+     * Handles the login form submission.
+     * Signs in the user with email and password.
+     * @param {Event} e - The submit event.
+     */
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = loginForm['login-email'].value;
@@ -59,6 +77,11 @@ if (loginForm) {
 
 // Signup
 if (signupForm) {
+    /**
+     * Handles the signup form submission.
+     * Creates a new user with email and password and creates a user profile in the database.
+     * @param {Event} e - The submit event.
+     */
     signupForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = signupForm['signup-email'].value;
@@ -99,6 +122,10 @@ if (signupForm) {
 
 // Logout
 if (logoutBtn) {
+    /**
+     * Handles the logout button click.
+     * Signs out the current user and redirects to the login page.
+     */
     logoutBtn.addEventListener('click', () => {
         signOut(auth).then(() => {
             console.log("Sign-out successful.");

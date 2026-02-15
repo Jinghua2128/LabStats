@@ -1,4 +1,13 @@
-// dashboard.js
+/**
+ * @file dashboard.js
+ * @description Manages the dashboard functionality, including data fetching from Firebase, 
+ *              displaying real-time statistics, and handling the "Gravity Lab" intro overlay.
+ * @author Liu GuangXuan from G²KM
+ * @copyright Copyright (c) 2026 G²KM
+ * @license All Rights Reserved
+ * @version 1.0.0
+ */
+
 import { auth, db } from "./firebase-config.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -25,6 +34,12 @@ let currentLabsData = {}; // Store data globally to access in modal
 // --- Dashboard Logic ---
 
 // Monitor Auth State
+/**
+ * Monitors the authentication state.
+ * Fetches user data if logged in, otherwise redirects to the login page.
+ * @param {object} auth - Firebase Auth instance.
+ * @param {function} callback - Callback function triggered on state change.
+ */
 onAuthStateChanged(auth, (user) => {
     if (user) {
         if (userEmailEl) userEmailEl.textContent = user.email;
@@ -39,6 +54,11 @@ onAuthStateChanged(auth, (user) => {
 
 // --- Data Fetching & Real-time Updates ---
 
+/**
+ * Fetches user lab data from Firebase Realtime Database.
+ * Sets up a real-time listener for updates.
+ * @param {string} uid - The user ID.
+ */
 function fetchUserData(uid) {
     const labsRef = ref(db, 'Users/' + uid + '/Labs');
 
@@ -55,6 +75,10 @@ function fetchUserData(uid) {
 
 // --- Dashboard Calculations & Rendering ---
 
+/**
+ * Updates the dashboard statistics and table with new data.
+ * @param {object} labsData - The lab data object fetched from Firebase.
+ */
 function updateDashboard(labsData) {
     if (!labsData) {
         if (labsTableBody) labsTableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No data found.</td></tr>';
@@ -129,6 +153,13 @@ function updateDashboard(labsData) {
     renderTable(tableRows);
 }
 
+/**
+ * Updates the statistics cards on the dashboard.
+ * @param {number} total - Total number of labs completed.
+ * @param {string} avg - Average time taken.
+ * @param {string} fastest - Fastest completion time.
+ * @param {string} latest - Name of the most recently completed lab.
+ */
 function updateStats(total, avg, fastest, latest) {
     if (totalLabsEl) totalLabsEl.textContent = total;
     if (avgTimeEl) avgTimeEl.textContent = avg + "s";
@@ -136,6 +167,10 @@ function updateStats(total, avg, fastest, latest) {
     if (latestLabEl) latestLabEl.textContent = latest;
 }
 
+/**
+ * Renders the table rows for lab data.
+ * @param {Array<object>} rows - Array of lab data objects for the table.
+ */
 function renderTable(rows) {
     if (!labsTableBody) return;
 
@@ -172,6 +207,11 @@ function renderTable(rows) {
 // --- Modal Functions ---
 
 // Expose openModal to global scope so HTML onclick can access it
+/**
+ * Opens the experiment details modal.
+ * Special handling for "Gravity Lab" to show the intro overlay first.
+ * @param {string} labName - The name of the lab to open.
+ */
 window.openModal = function (labName) {
     const labData = currentLabsData[labName];
     if (!labData) return;
@@ -204,6 +244,11 @@ window.openModal = function (labName) {
     showExperimentDetails(labName, labData);
 }
 
+/**
+ * Populates and shows the experiment details modal content.
+ * @param {string} labName - Name of the lab.
+ * @param {object} labData - Data object for the lab containing experiments.
+ */
 function showExperimentDetails(labName, labData) {
     modalTitle.textContent = `Details: ${labName}`;
     modalLabName.textContent = `Detailed experiment logs for ${labName}`;
@@ -249,6 +294,9 @@ function showExperimentDetails(labName, labData) {
     modal.classList.remove('hidden');
 }
 
+/**
+ * Closes the details modal.
+ */
 function closeModal() {
     modal.classList.add('hidden');
 }

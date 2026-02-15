@@ -1,4 +1,12 @@
-// mascot.js
+/**
+ * @file mascot.js
+ * @description Controls the behavior of the LabRats mascot (the rat), including 
+ *              rendering it on the screen, verifying user interactions, and playing random audio clips.
+ * @author Liu GuangXuan from G²KM
+ * @copyright Copyright (c) 2026 G²KM
+ * @license All Rights Reserved
+ * @version 1.0.0
+ */
 
 const audioFiles = [
     'audios/web gravity lab.wav',
@@ -8,6 +16,10 @@ const audioFiles = [
 
 let currentAudio = null;
 
+/**
+ * Creates and appends the mascot container and image to the DOM.
+ * Sets up the click event listener for playing audio.
+ */
 function createMascot() {
     // Create container
     const container = document.createElement('div');
@@ -32,6 +44,10 @@ function createMascot() {
     document.body.appendChild(container);
 }
 
+/**
+ * Plays a random audio clip from the `audioFiles` array.
+ * Handles audio playback state and triggers the bounce animation on the mascot.
+ */
 function playRandomAudio() {
     // Stop current audio and animation if playing
     const img = document.querySelector('#rat-mascot-container img');
